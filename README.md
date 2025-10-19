@@ -47,11 +47,36 @@ stellar-clases/
 
 ## 🎯 Tareas Completadas
 
+### ✅ Clase 2 - Tarea 2: Stellar JavaScript SDK
+
+**Descripción**: Proyecto con ejemplos prácticos para trabajar con la red Stellar usando el JavaScript SDK oficial. Sistema completo de gestión de cuentas y transacciones.
+
+**Características**:
+
+- Creación automática de cuentas Stellar
+- Sistema de pagos automatizado para múltiples destinos
+- Monitor de balances para múltiples cuentas
+- Consulta de información completa de cuentas
+- Manejo completo de errores
+- Variables de entorno para seguridad
+
+**Archivos**:
+
+- `crear-cuenta.js` - Generación de cuentas con Friendbot
+- `ver-balance.js` - Consulta de balances
+- `enviar-pago.js` - Sistema de pagos automatizado
+- `consultar-balance.js` - Monitor de múltiples cuentas
+
+**Tecnologías**: JavaScript, Stellar SDK, Node.js
+
+**Estado**: ✅ Completado
+
 ### ✅ Clase 4 - Tarea 5: Hello Tiburona Profesional
 
 **Descripción**: Contrato inteligente desarrollado en Soroban (Stellar) que implementa un sistema de mensajes personalizados con contador y gestión de estado.
 
 **Características**:
+
 - Sistema de inicialización con administrador
 - Mensajes personalizados con contador automático
 - Gestión de estado persistente
@@ -77,14 +102,14 @@ stellar-clases/
 
 ## 🛠️ Tecnologías Utilizadas
 
-| Tecnología | Descripción | Estado |
-|------------|-------------|---------|
-| **Rust** | Lenguaje principal para contratos | ✅ |
-| **Soroban** | SDK de contratos inteligentes | ✅ |
-| **JavaScript** | SDK para integración web | 🔄 |
-| **React** | Frontend framework | 📋 |
-| **Docker** | Entorno de desarrollo | ✅ |
-| **Git** | Control de versiones | ✅ |
+| Tecnología     | Descripción                       | Estado |
+| -------------- | --------------------------------- | ------ |
+| **Rust**       | Lenguaje principal para contratos | ✅     |
+| **Soroban**    | SDK de contratos inteligentes     | ✅     |
+| **JavaScript** | SDK para integración web          | 🔄     |
+| **React**      | Frontend framework                | 📋     |
+| **Docker**     | Entorno de desarrollo             | ✅     |
+| **Git**        | Control de versiones              | ✅     |
 
 ---
 
@@ -99,9 +124,10 @@ stellar-clases/
 
 ## 🏆 Logros
 
+- ✅ **Sistema JavaScript SDK** con 4 archivos funcionales
 - ✅ **Contrato Hello World** con 8 tests unitarios
 - ✅ **Optimización de contrato** (reducción del 35% en tamaño)
-- ✅ **Documentación completa** del proyecto
+- ✅ **Documentación completa** de ambos proyectos
 - ✅ **Estructura de proyecto** profesional
 
 ---
