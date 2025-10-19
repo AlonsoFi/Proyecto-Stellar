@@ -20,6 +20,8 @@ pub enum DataKey {
     Admin,
     ContadorSaludos,
     UltimoSaludo(Address),
+    ContadorPorUsuario(Address),
+    LimiteCaracteres,
 }
 
 #[contract]
@@ -42,6 +44,10 @@ impl HelloContract {
 
         env.storage()
             .instance()
+            .set(&DataKey::LimiteCaracteres, &32u32);
+
+        env.storage()
+            .instance()
             .extend_ttl(100, 100);
         
         Ok(())
@@ -59,8 +65,13 @@ impl HelloContract {
             return Err(Error::NombreVacio);
         }
         
-        // Validación del nombre (no muy largo)
-        if nombre.len() > 32 {
+        // Validación del nombre (no muy largo) - usar límite configurable
+        let limite: u32 = env.storage()
+            .instance()
+            .get(&DataKey::LimiteCaracteres)
+            .unwrap_or(32);
+        
+        if nombre.len() > limite {
             return Err(Error::NombreMuyLargo);
         }
 
@@ -75,6 +86,17 @@ impl HelloContract {
             .instance()
             .set(&key_contador, &(contador + 1));
 
+        // Incrementar el contador del usuario específico
+        let key_contador_usuario = DataKey::ContadorPorUsuario(usuario.clone());
+        let contador_usuario: u32 = env.storage()
+            .persistent()
+            .get(&key_contador_usuario)
+            .unwrap_or(0);
+        
+        env.storage()
+            .persistent()
+            .set(&key_contador_usuario, &(contador_usuario + 1));
+
         // Guardar el último saludo del usuario
         env.storage()
             .persistent()
@@ -83,7 +105,11 @@ impl HelloContract {
         // Extender TTL del contrato
         env.storage()
             .persistent()
-            .extend_ttl(&DataKey::UltimoSaludo(usuario), 100, 100);
+            .extend_ttl(&DataKey::UltimoSaludo(usuario.clone()), 100, 100);
+        
+        env.storage()
+            .persistent()
+            .extend_ttl(&DataKey::ContadorPorUsuario(usuario), 100, 100);
         
         env.storage()
             .instance()
@@ -106,6 +132,13 @@ impl HelloContract {
             .get(&DataKey::UltimoSaludo(usuario))
     }
 
+    pub fn get_contador_usuario(env: Env, usuario: Address) -> u32 {
+        env.storage()
+            .persistent()
+            .get(&DataKey::ContadorPorUsuario(usuario))
+            .unwrap_or(0)
+    }
+
     pub fn reset_contador(env: Env, caller: Address) -> Result<(), Error> {
         let admin: Address = env.storage()
             .instance()
@@ -121,6 +154,55 @@ impl HelloContract {
             .set(&DataKey::ContadorSaludos, &0u32);
         
         Ok(())
+    }
+
+    pub fn transfer_admin(
+        env: Env,
+        caller: Address,
+        nuevo_admin: Address
+    ) -> Result<(), Error> {
+        let admin_actual: Address = env.storage()
+            .instance()
+            .get(&DataKey::Admin)
+            .ok_or(Error::NoInicializado)?;
+
+        if caller != admin_actual {
+            return Err(Error::NoAutorizado);
+        }
+
+        env.storage()
+            .instance()
+            .set(&DataKey::Admin, &nuevo_admin);
+        
+        Ok(())
+    }
+
+    pub fn set_limite(
+        env: Env,
+        caller: Address,
+        limite: u32
+    ) -> Result<(), Error> {
+        let admin: Address = env.storage()
+            .instance()
+            .get(&DataKey::Admin)
+            .ok_or(Error::NoInicializado)?;
+
+        if caller != admin {
+            return Err(Error::NoAutorizado);
+        }
+
+        env.storage()
+            .instance()
+            .set(&DataKey::LimiteCaracteres, &limite);
+        
+        Ok(())
+    }
+
+    pub fn get_limite(env: Env) -> u32 {
+        env.storage()
+            .instance()
+            .get(&DataKey::LimiteCaracteres)
+            .unwrap_or(32)
     }
 }
 
