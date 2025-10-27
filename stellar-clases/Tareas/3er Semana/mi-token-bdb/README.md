@@ -1,24 +1,20 @@
 # 🦈 Token BDB - Mi Primera DApp
 
-Esta es tu DApp del Token BDB deployada en Stellar Testnet. Una aplicación web completa que conecta con Freighter Wallet y permite interactuar con tu token personalizado en la blockchain.
+Una aplicación web completa que conecta con Freighter Wallet y permite interactuar con tu token personalizado BDB en Stellar Testnet.
 
-## 🚀 Deploy a Netlify
+## 🚀 Deploy Rápido
 
 ### Opción 1: Deploy Manual (Más Fácil)
-
-1. **Ve a [netlify.com](https://netlify.com)**
-2. **Crea una cuenta** si no tienes una
-3. **Arrastra la carpeta `dist`** a la zona de deploy de Netlify
-4. **¡Listo!** Tu DApp estará disponible en internet
+1. Ve a [netlify.com](https://netlify.com)
+2. Arrastra la carpeta `dist/` a la zona de deploy
+3. ¡Listo! Tu DApp estará disponible en internet
 
 ### Opción 2: Deploy con Git
-
-1. **Sube tu código a GitHub**
-2. **Conecta tu repo con Netlify**
-3. **Configura el build:**
+1. Sube tu código a GitHub
+2. Conecta tu repo con Netlify
+3. Configura el build:
    - Build command: `npm run build`
    - Publish directory: `dist`
-4. **Deploy automático**
 
 ## 🔧 Configuración
 
@@ -30,10 +26,58 @@ Tu DApp está configurada con:
 ## 🎯 Funcionalidades
 
 - ✅ Conexión con Freighter Wallet
+- ✅ Modo Demo para testing
 - ✅ Ver balance de tokens BDB
+- ✅ Transferir tokens BDB
+- ✅ Dashboard avanzado
+- ✅ Historial de transacciones
+- ✅ Modo oscuro/claro
+- ✅ Sistema de notificaciones
+- ✅ Soporte para múltiples wallets
 - ✅ Interfaz responsive
-- ✅ Deploy en producción
+
+## 🛠️ Desarrollo Local
+
+```bash
+# Instalar dependencias
+npm install
+
+# Desarrollo
+npm run dev
+
+# Build para producción
+npm run build
+
+# Preview del build
+npm run preview
+```
+
+## 🐳 Build con Docker
+
+```bash
+# Crear imagen
+docker build -t mi-token-bdb .
+
+# Ejecutar contenedor
+docker run -p 4173:4173 mi-token-bdb
+```
+
+## 📁 Estructura del Proyecto
+
+```
+mi-token-bdb/
+├── src/                    # Código fuente React
+│   ├── App.tsx            # Componente principal
+│   └── main.tsx           # Entry point
+├── contracts/              # Contratos Rust
+│   └── buen_dia_token/    # Tu contrato BDB
+├── dist/                  # Build de producción (para deploy)
+├── public/                # Archivos estáticos
+├── .env                   # Variables de entorno
+├── package.json           # Dependencias
+└── vite.config.ts         # Configuración de Vite
+```
 
 ## 🦈 ¡Tu DApp está lista para el mundo!
 
-Ahora puedes compartir el link de Netlify con tus compañeras y mostrar tu Token BDB funcionando en internet.
+Construida con ❤️ por Alonso Florencia usando Stellar + React + TypeScript
