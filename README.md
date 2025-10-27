@@ -9,10 +9,11 @@ Este repositorio contiene todas mis tareas y proyectos completados durante el cu
 ## 🎯 Proyectos Principales
 
 ### 🦈 Token BDB - Mi Primera DApp
+
 **Ubicación:** `stellar-clases/Tareas/3er Semana/mi-token-bdb/`
 
 - ✅ **Frontend React** con TypeScript
-- ✅ **Integración Freighter Wallet** 
+- ✅ **Integración Freighter Wallet**
 - ✅ **Modo Demo** para pruebas
 - ✅ **Transferencias de tokens** BDB
 - ✅ **Dashboard visual** con estadísticas
@@ -62,4 +63,4 @@ stellar-clases/
 
 ---
 
-**por Alonso Florencia 🦈** | *Desarrolladora Stellar*
+**por Alonso Florencia 🦈** | _Desarrolladora Stellar_
