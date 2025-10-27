@@ -1,0 +1,65 @@
+import { useState, useEffect } from 'react';
+import { setAllowed, isConnected, getPublicKey } from '@stellar/freighter-api';
+
+// Configuración de la red
+const CONTRACT_ID = 'CCJVPYPPUWDQ7PYUZGHLSLOSWHRHYXWYOC6LJPE65E25TNC73LW4NDML';
+const RPC_URL = 'https://soroban-testnet.stellar.org';
+
+function App() {
+  const [publicKey, setPublicKey] = useState<string>('');
+  const [connected, setConnected] = useState<boolean>(false);
+  const [balance, setBalance] = useState<string>('0');
+  const [loading, setLoading] = useState<boolean>(false);
+  const [tokenInfo, setTokenInfo] = useState<any>(null);
+
+  // Conectar wallet usando la API oficial de Freighter
+  const connectWallet = async () => {
+    try {
+      console.log('Intentando conectar con Freighter...');
+      
+      // Esperar un poco para que Freighter se cargue completamente
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Verificar si Freighter está disponible
+      const connected = await isConnected();
+      console.log('Freighter conectado:', connected);
+      
+      if (connected) {
+        // Ya está conectado, obtener la clave pública usando window.freighterApi
+        const freighter = (window as any).freighterApi;
+        if (freighter) {
+          const pk = await freighter.getPublicKey();
+          setPublicKey(pk);
+          setConnected(true);
+          console.log('Wallet conectada:', pk);
+        } else {
+          throw new Error('Freighter API no disponible');
+        }
+      } else {
+        // Intentar conectar
+        try {
+          await setAllowed(true); // Solicitar permiso para conectar
+          const freighter = (window as any).freighterApi;
+          if (freighter) {
+            const pk = await freighter.getPublicKey();
+            setPublicKey(pk);
+            setConnected(true);
+            console.log('Wallet conectada:', pk);
+          } else {
+            throw new Error('Freighter API no disponible');
+          }
+        } catch (connectError) {
+          console.error('Error conectando:', connectError);
+          alert('Por favor conecta tu cuenta en Freighter primero');
+        }
+      }
+    } catch (error) {
+      console.error('Error con Freighter:', error);
+      alert('Freighter wallet no está instalado o no se detecta correctamente.\\n\\nPor favor:\\n1. Instala Freighter desde https://www.freighter.app/\\n2. Refresca esta página\\n3. Asegúrate de que la extensión esté habilitada');
+    }
+  };
+
+  // Obtener información del token (simulado por ahora)
+  const getTokenInfo = async () => {
+    setTokenInfo({
+      name: " Buen Dia Builders\,

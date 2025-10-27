@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🦈 Token BDB - Mi Primera DApp</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+      
+      @keyframes pulse {
+        0% { opacity: 1; }
+        50% { opacity: 0.5; }
+        100% { opacity: 1; }
+      }
+      
+      @keyframes slideIn {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+      
+      @keyframes fadeInUp {
+        from {
+          transform: translateY(20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      
+      @keyframes glow {
+        0%, 100% { box-shadow: 0 0 5px rgba(0, 136, 204, 0.3); }
+        50% { box-shadow: 0 0 20px rgba(0, 136, 204, 0.6); }
+      }
+      
+      /* Estilos responsivos para los botones de control */
+      @media (max-width: 768px) {
+        .control-buttons {
+          position: fixed !important;
+          top: 10px !important;
+          right: 10px !important;
+          z-index: 1001 !important;
+          flex-direction: column !important;
+          gap: 8px !important;
+        }
+        
+        .theme-toggle {
+          padding: 8px 12px !important;
+          font-size: 11px !important;
+        }
+        
+        /* Ajustar el contenedor principal para evitar solapamiento */
+        .main-container {
+          padding-top: 80px !important;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .control-buttons {
+          gap: 6px !important;
+        }
+        
+        .theme-toggle {
+          padding: 6px 10px !important;
+          font-size: 10px !important;
+        }
+        
+        .main-container {
+          padding-top: 70px !important;
+        }
+      }
+      
+      @media (max-width: 360px) {
+        .theme-toggle {
+          padding: 4px 8px !important;
+          font-size: 9px !important;
+        }
+        
+        .main-container {
+          padding-top: 60px !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

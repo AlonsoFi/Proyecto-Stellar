@@ -1,0 +1,27 @@
+# Variables de entorno
+.env
+.env.local
+
+# Dependencias
+node_modules/
+
+# Build
+dist/
+build/
+
+# Logs
+*.log
+
+# Sistema
+.DS_Store
+
+# Rust
+target/
+Cargo.lock
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
